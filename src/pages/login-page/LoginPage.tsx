@@ -1,7 +1,7 @@
 import { Button } from "@consta/uikit/Button";
 import { TextField } from "@consta/uikit/TextField";
 import { useState } from "react";
-import { login } from "../../store/api-actions";
+import { login, UserResp } from "../../store/api-actions";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/user-slice";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const LoginPage = () => {
                                 lastName: respData.lastName,
                                 email: respData.email,
                                 image: respData.image,
-                            },
+                            } as UserResp,
                             token: respData.accessToken,
                         }),
                     );
