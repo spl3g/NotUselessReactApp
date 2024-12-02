@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Tabs } from "@consta/uikit/Tabs";
 import { useLocation, useNavigate } from "react-router-dom";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
 
 type Item = {
     label: string;
@@ -13,16 +15,16 @@ const items: Item[] = [
 ];
 
 const PageTabs = ({ linePosition }: { linePosition: "top" | "bottom" }) => {
+    const user = useSelector((state: RootState) => state.user.user);
     const location = useLocation();
     const navigate = useNavigate();
 
-    const findItem = () =>
-        items.find((i) => i.link === location.pathname) || null;
-
-    const [value, setValue] = useState<Item | null>(findItem);
+    const [value, setValue] = useState<Item | null>(
+        items.find((i) => i.link === location.pathname) || null,
+    );
 
     useEffect(() => {
-        setValue(findItem);
+        setValue(items.find((i) => i.link === location.pathname) || null);
     }, [location.pathname]);
     return (
         <Tabs
@@ -31,7 +33,7 @@ const PageTabs = ({ linePosition }: { linePosition: "top" | "bottom" }) => {
                 setValue(item);
                 navigate(item.link);
             }}
-            items={items}
+            items={!user ? items.slice(0, -1) : items}
             linePosition={linePosition}
             view="clear"
         />
