@@ -1,13 +1,13 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { presetGpnDefault, Theme } from "@consta/uikit/Theme";
-import { Responses404 } from "@consta/uikit/Responses404";
 import MainPage from "../../pages/main-page/MainPage";
 import DefaultLayout from "../../layouts/default/DefaultLayout";
 import ServicePage from "../../pages/service-page/ServicePage";
 import ServiceDetailPage from "../../pages/service-detail-page/ServiceDetailPage";
 import LoginPage from "../../pages/login-page/LoginPage";
 import ProfilePage from "../../pages/profile-page/ProfilePage";
+import Page404 from "../../pages/404-page/Page404";
 
 function App() {
     return (
@@ -27,7 +27,7 @@ function App() {
                         <Route path="login" element={<LoginPage />}></Route>
                         <Route path="user" element={<ProfilePage />}></Route>
                     </Route>
-                    <Route path="*" element={<Responses404 />}></Route>
+                    <Route path="*" element={<Page404 />}></Route>
                 </Routes>
             </BrowserRouter>
         </Theme>
