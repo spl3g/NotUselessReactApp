@@ -20,7 +20,11 @@ export const ServicesListData: React.FC<Service> = function ({
 }) {
     const navigate = useNavigate();
     return (
-        <Card verticalSpace="m" horizontalSpace="m">
+        <Card
+            verticalSpace="m"
+            horizontalSpace="m"
+            style={{ position: "relative" }}
+        >
             <Text
                 weight="semibold"
                 style={{ cursor: "pointer" }}
@@ -38,7 +42,16 @@ export const ServicesListData: React.FC<Service> = function ({
                 />
                 <Text>{description}</Text>
             </div>
-            <Text size="xs" align="right" view="ghost">
+            <Text
+                size="xs"
+                align="right"
+                view="ghost"
+                style={{
+                    position: "absolute",
+                    bottom: "0.5rem",
+                    right: "0.5rem",
+                }}
+            >
                 {createdAt}
             </Text>
         </Card>
