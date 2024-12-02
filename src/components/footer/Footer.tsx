@@ -7,7 +7,9 @@ const Footer = () => {
             <div className="page-tabs">
                 <PageTabs linePosition="top" />
             </div>
-            <div className="company-text">@ 2024 My Lethal Company</div>
+            <div className="company-text">
+                @ {new Date().getFullYear()} My Lethal Company
+            </div>
         </footer>
     );
 };
