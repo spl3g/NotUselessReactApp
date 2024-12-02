@@ -1,16 +1,23 @@
-import { ServicesListData, type Service } from "../../types/Services";
-import { useEffect, useState } from "react";
+import { ServicesListData } from "../../types/Services";
+import { useEffect } from "react";
 import { getServicesListAction } from "../../store/api-actions";
 import { Loader } from "@consta/uikit/Loader";
+import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setServices } from "../../store/services-slice";
 
 const ServicePage = function () {
-    const [services, setServices] = useState<Service[] | null>();
+    const selectServices = (state: RootState) => state.services.services;
+    const dispatch = useDispatch();
+    const services = useSelector(selectServices);
+
     useEffect(() => {
-        async function fetchServices() {
-            setServices(await getServicesListAction());
+        if (services.length === 0) {
+            getServicesListAction().then((services) => {
+                dispatch(setServices(services));
+            });
         }
-        fetchServices();
-    }, []);
+    }, [dispatch, services]);
 
     return (
         <div
